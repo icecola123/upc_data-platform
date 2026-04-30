@@ -25,10 +25,6 @@ echo "=== 3. Initialize Superset roles and permissions ==="
 superset init
 
 
-echo "=== 4. Fix project_db database URI if database exists ==="
-
-
-echo "=== 5. Import Superset dashboard assets if available ==="
 echo "=== 4. Import Superset dashboard assets if available ==="
 
 ASSET_ZIP="/app/superset_assets/upc_dashboard.zip"
