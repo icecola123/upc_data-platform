@@ -76,6 +76,8 @@ AIRFLOW_WEB_USER
 AIRFLOW_WEB_PASSWORD
  Confirm process_new_data_dag is visible.
  Confirm process_new_data_dag is not paused.
+ 
+ 
 5. Streamlit Upload Test
  Open Streamlit data portal:
 http://localhost:8501
@@ -85,6 +87,8 @@ PORTAL_ACCESS_PASSWORD
  Confirm the file is uploaded to MinIO.
  Confirm Airflow DAG is triggered.
  Confirm the DAG run succeeds.
+ 
+ 
 6. PostgreSQL Validation
  Run PostgreSQL check.
 .\scripts\check_postgres.ps1
@@ -99,6 +103,8 @@ public.raw_parties
 Optional manual check:
 
 docker compose exec -e PGPASSWORD=project_pass postgres psql -U project_user -d project_db -c "\dt public.raw_*"
+
+
 7. MinIO Validation
  Run full smoke test.
 .\scripts\smoke_test.ps1
@@ -109,6 +115,8 @@ portal_uploader can upload
 airflow_reader can read
 Airflow minio_conn uses airflow_reader
  Confirm business services do not use MinIO root credentials.
+
+
 8. Superset Validation
  Open Superset:
 http://localhost:8088
@@ -126,6 +134,11 @@ superset/sql/
 
 to recreate analytical datasets if needed.
 
+- [ ] Superset automatically imports `superset/assets/upc_dashboard.zip`.
+- [ ] The dashboard appears after Superset initialization.
+- [ ] The imported `project_db` database connection points to `postgres:5432/project_db`.
+
+
 9. Utility Scripts
  Airflow check works.
 .\scripts\check_airflow.ps1
@@ -139,6 +152,8 @@ to recreate analytical datasets if needed.
 If PowerShell blocks script execution, run:
 
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+
 10. Git Validation
  Run:
 git status
@@ -149,6 +164,8 @@ nothing to commit, working tree clean
  Confirm .env is ignored.
  Confirm runtime data directories are ignored.
  Confirm uploaded data files are ignored.
+
+
 11. Known Limitations
  Superset dashboards may need to be manually rebuilt or rebound to datasets.
  Railway deployment is not implemented.
@@ -156,6 +173,8 @@ nothing to commit, working tree clean
  MinIO image is not pinned because downgrading caused storage compatibility issues.
  Full production CI/CD is not implemented yet.
  Some script outputs can be further improved to avoid displaying sensitive values.
+
+
 12. Handoff Result
 
 The project is ready for handoff if all of the following are true:

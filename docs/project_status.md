@@ -76,3 +76,19 @@ Rebuild or adjust dashboard charts only after the data platform is finalized.
 Push the repository to GitHub when ready.
 Enable the included GitHub Actions workflow.
 Consider a future production deployment strategy.
+
+
+## Superset Dashboard Import
+
+Superset dashboard assets are stored under:
+
+`superset/assets/upc_dashboard.zip`
+
+During Superset initialization, the import script patches the exported database URI using the local `.env` project database credentials and imports the dashboard automatically.
+
+The imported assets currently include:
+
+- `project_db` database connection
+- the virtual dataset used by the dashboard
+- chart metadata
+- dashboard metadata
