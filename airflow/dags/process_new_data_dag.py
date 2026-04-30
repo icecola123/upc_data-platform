@@ -130,6 +130,7 @@ with DAG(
     start_date=datetime(2026, 1, 1),
     schedule_interval=None,
     catchup=False,
+    is_paused_upon_creation=False,
     tags=["UPC_Project", "Streamlit_Triggered", "dbt_Integrated"],
 ) as dag:
 
