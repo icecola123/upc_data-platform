@@ -92,3 +92,8 @@ The imported assets currently include:
 - the virtual dataset used by the dashboard
 - chart metadata
 - dashboard metadata
+
+## Recent Updates
+
+- Streamlit data portal UI has been translated to English.
+- Superset dashboard export is stored under `superset/assets/` and can be imported automatically during Superset initialization.

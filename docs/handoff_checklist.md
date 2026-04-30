@@ -188,3 +188,7 @@ The project is ready for handoff if all of the following are true:
  Superset can connect to PostgreSQL.
  Smoke test passes.
  Git working tree is clean.
+ 
+
+- [ ] Streamlit data portal is displayed in English.
+- [ ] Superset dashboard appears after automatic import.
