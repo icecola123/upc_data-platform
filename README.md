@@ -127,6 +127,12 @@ ds_cases_enriched
 ds_cases_geo
 ds_cases_parties
 
+Superset analytical datasets are created manually in SQL Lab using the SQL files stored in `superset/sql/`.
+
+- `superset/sql/ds_cases_enriched.sql`
+- `superset/sql/ds_cases_geo.sql`
+- `superset/sql/ds_cases_parties.sql`
+
 
 8. Important Notes
 
