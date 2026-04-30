@@ -134,9 +134,13 @@ superset/sql/
 
 to recreate analytical datasets if needed.
 
-- [ ] Superset automatically imports `superset/assets/upc_dashboard.zip`.
-- [ ] The dashboard appears after Superset initialization.
+- [ ] Run Superset health check.
+
+  `.\scripts\check_superset.ps1`
+
+- [ ] Superset automatically imports the dashboard export from `superset/assets/`.
 - [ ] The imported `project_db` database connection points to `postgres:5432/project_db`.
+
 
 
 9. Utility Scripts
@@ -192,3 +196,8 @@ The project is ready for handoff if all of the following are true:
 
 - [ ] Streamlit data portal is displayed in English.
 - [ ] Superset dashboard appears after automatic import.
+
+- [ ] Replace the current test dashboard export with the final Superset dashboard export.
+- [ ] Re-run Superset initialization.
+- [ ] Confirm the final dashboard is imported automatically.
+- [ ] Confirm all final charts and filters render correctly.

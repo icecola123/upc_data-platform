@@ -93,6 +93,42 @@ The imported assets currently include:
 - chart metadata
 - dashboard metadata
 
+
+## Superset Dashboard Status
+
+A minimal test dashboard has been created and successfully used to validate the automated Superset dashboard import workflow.
+
+The final dashboard is intentionally postponed because it is mostly a workload and design task rather than a platform stability task.
+
+The final workflow will be:
+
+1. Build the final dashboard manually in Superset.
+2. Export the dashboard as a ZIP file.
+3. Replace the dashboard asset under `superset/assets/`.
+4. Reset or recreate Superset metadata.
+5. Verify that the dashboard is imported automatically during Superset initialization.
+
+The current automated import mechanism has already been validated with a test dashboard.
+
+
+## Superset Dashboard Status
+
+A minimal test dashboard has been created and successfully used to validate the automated Superset dashboard import workflow.
+
+The final dashboard is intentionally postponed because it is mainly a workload and design task rather than a platform stability task.
+
+The validated workflow is:
+
+1. Build or update the dashboard manually in Superset.
+2. Export the dashboard as a ZIP file.
+3. Place the export under `superset/assets/`.
+4. Start or recreate Superset.
+5. During initialization, the script patches the exported database URI using `.env` values.
+6. Superset imports the dashboard automatically.
+
+Before final delivery, the test dashboard export should be replaced by the final dashboard export and the automatic import should be tested again.
+
+
 ## Recent Updates
 
 - Streamlit data portal UI has been translated to English.

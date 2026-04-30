@@ -39,6 +39,7 @@ Superset datasets / dashboards
 │   ├── init.sh
 │   └── init_superset.sh
 ├── scripts/
+│   ├── check_superset.ps1
 │   └── smoke_test.ps1
 ├── superset/
 │   └── superset_config.py
