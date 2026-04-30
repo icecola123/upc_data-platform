@@ -13,7 +13,7 @@ docker compose up -d --build
 
 Write-Host ""
 Write-Host "Waiting for services to initialize..."
-Start-Sleep -Seconds 20
+Start-Sleep -Seconds 25
 
 Write-Host ""
 Write-Host "=============================="
