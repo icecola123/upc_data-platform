@@ -31,7 +31,14 @@ Write-Host "=============================="
 Write-Host "Smoke Test: data-portal MinIO env"
 Write-Host "=============================="
 
-docker compose exec data-portal env | Select-String "MINIO"
+$portalEnv = docker compose exec data-portal env 2>&1
+
+if ($portalEnv -match "MINIO_PORTAL_USER=portal_uploader" -and $portalEnv -notmatch "MINIO_ROOT_USER") {
+    Write-Host "OK: data-portal uses MINIO_PORTAL_USER and does not expose MINIO_ROOT_USER."
+} else {
+    Write-Host "ERROR: data-portal MinIO environment is not configured as expected."
+    exit 1
+}
 
 Write-Host ""
 Write-Host "=============================="
@@ -59,14 +66,15 @@ Write-Host "=============================="
 Write-Host "Smoke Test: MinIO portal upload permission"
 Write-Host "=============================="
 
-docker run --rm --network data-platform_default --entrypoint /bin/sh minio/mc -c "echo test > /tmp/permission_test.txt && mc alias set portal http://minio:9000 portal_uploader PortalUploadPass_2026 && mc cp /tmp/permission_test.txt portal/client-raw-data/smoke_permission_test.txt"
+$testObject = "smoke_permission_test_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+docker run --rm --network data-platform_default --entrypoint /bin/sh minio/mc -c "echo test > /tmp/permission_test.txt && mc alias set portal http://minio:9000 portal_uploader PortalUploadPass_2026 && mc cp /tmp/permission_test.txt portal/client-raw-data/$testObject"
 
 Write-Host ""
 Write-Host "=============================="
 Write-Host "Smoke Test: MinIO airflow read permission"
 Write-Host "=============================="
 
-docker run --rm --network data-platform_default --entrypoint /bin/sh minio/mc -c "mc alias set reader http://minio:9000 airflow_reader AirflowReadPass_2026 && mc cat reader/client-raw-data/smoke_permission_test.txt"
+docker run --rm --network data-platform_default --entrypoint /bin/sh minio/mc -c "mc alias set reader http://minio:9000 airflow_reader AirflowReadPass_2026 && mc cat reader/client-raw-data/$testObject"
 
 Write-Host ""
 Write-Host "=============================="
