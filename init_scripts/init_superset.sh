@@ -31,7 +31,7 @@ echo "=== 4. Fix project_db database URI if database exists ==="
 echo "=== 5. Import Superset dashboard assets if available ==="
 echo "=== 4. Import Superset dashboard assets if available ==="
 
-ASSET_ZIP="/app/superset_assets/dashboard_export_20260430T164718.zip"
+ASSET_ZIP="/app/superset_assets/upc_dashboard.zip"
 PATCHED_ASSET_ZIP="/tmp/superset_dashboard_import.zip"
 
 if [ -f "$ASSET_ZIP" ]; then
