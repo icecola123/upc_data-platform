@@ -1,0 +1,48 @@
+name: Basic Project Validation
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f README.md
+          test -f .env.example
+          test -f docker-compose.yml
+          test -f airflow/dags/process_new_data_dag.py
+          test -f data_portal/app.py
+          test -f scripts/smoke_test.ps1
+
+      - name: Ensure sensitive files are not committed
+        run: |
+          if git ls-files | grep -E '(^\.env$|postgres_data/|minio_data/|airflow/logs/|\.xlsx$|\.csv$)'; then
+            echo "Sensitive or runtime files are tracked by git."
+            exit 1
+          fi
+
+      - name: Create local env file from example
+        run: cp .env.example .env
+
+      - name: Validate Docker Compose config
+        run: docker compose config
+
+      - name: Check Python syntax
+        run: |
+          python -m py_compile data_portal/app.py
+          python -m py_compile airflow/dags/process_new_data_dag.py
+
+      - name: Check shell scripts syntax
+        run: |
+          bash -n init_scripts/init.sh
+          bash -n init_scripts/init_superset.sh
