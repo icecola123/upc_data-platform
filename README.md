@@ -147,3 +147,24 @@ uploaded Excel files
 If Airflow does not load the DAG, run:
 
 docker compose exec airflow-scheduler airflow dags list-import-errors
+
+
+
+## Utility Scripts
+
+Run a complete smoke test:
+
+```powershell
+.\scripts\smoke_test.ps1
+
+Check Airflow DAG status:
+
+.\scripts\check_airflow.ps1
+
+Check PostgreSQL raw tables:
+
+.\scripts\check_postgres.ps1
+
+Restart the platform and run smoke test:
+
+.\scripts\reset_project.ps1
