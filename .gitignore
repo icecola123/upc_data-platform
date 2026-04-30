@@ -1,0 +1,49 @@
+# ================= Environment files =================
+.env
+.env.local
+.env.*.local
+
+# Keep example env file
+!.env_example
+
+# ================= Docker persistent data =================
+postgres_data/
+minio_data/
+
+# ================= Airflow runtime files =================
+airflow/logs/
+airflow/plugins/__pycache__/
+airflow/dags/__pycache__/
+
+# ================= Python cache =================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# ================= Uploaded / raw data =================
+*.xlsx
+*.xls
+*.csv
+*.parquet
+*.jsonl
+
+# ================= Superset / local cache =================
+superset_home/
+*.db
+
+# ================= OS / editor =================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ================= dbt generated files =================
+airflow/dbt_project/target/
+airflow/dbt_project/dbt_packages/
+airflow/dbt_project/logs/
+
+
+archive/

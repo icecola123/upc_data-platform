@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_upc_data
+    columns:
+      - name: case_id
+      - name: patent_id
+      - name: court_division
+      - name: proceeding_language
+      - name: case_outcome
+      - name: defendant_name
+      - name: is_npe
+      - name: is_sep_patent
+      - name: transformed_at

@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: fct_upc_stats
+    columns:
+      - name: proceeding_language
+      - name: case_outcome
+      - name: is_sep_patent
+      - name: court_division
+      - name: is_npe
+      - name: tech_sector
+      - name: total_cases
+      - name: total_unique_patents

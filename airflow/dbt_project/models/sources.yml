@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw_data_source
+    schema: public
+    tables:
+      - name: raw_cases
+      - name: raw_patents
