@@ -201,3 +201,8 @@ The project is ready for handoff if all of the following are true:
 - [ ] Re-run Superset initialization.
 - [ ] Confirm the final dashboard is imported automatically.
 - [ ] Confirm all final charts and filters render correctly.
+
+- [ ] Deployment has been tested on another machine.
+- [ ] Docker Compose starts all required services.
+- [ ] Airflow DAG is visible and unpaused.
+- [ ] Superset starts and can connect to PostgreSQL.

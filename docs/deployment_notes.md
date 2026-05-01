@@ -42,3 +42,31 @@ Do not use localhost inside container-to-container connection strings.
 Use postgres as the PostgreSQL hostname from Superset and Airflow containers.
 Do not expose PostgreSQL publicly in a real deployment.
 For cloud deployment, prefer a VPS with Docker Compose.
+
+
+
+
+
+## Deployment Verification Result
+
+The project has been tested on multiple machines.
+
+Verified scenarios:
+
+- Main development machine
+- Another local machine
+- A remote machine in a different geographic location
+
+Results:
+
+- Docker Compose deployment succeeded.
+- Airflow initialized successfully.
+- Airflow webserver and scheduler stayed running.
+- Streamlit data portal started correctly.
+- MinIO initialized correctly.
+- PostgreSQL initialized correctly.
+- Superset started successfully.
+- Superset PostgreSQL connection worked.
+- The deployment followed the documented steps in this file.
+
+This confirms that the project can be migrated and redeployed on another machine using the repository files, `.env.example`, and Docker Compose.

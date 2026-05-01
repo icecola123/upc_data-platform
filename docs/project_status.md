@@ -133,3 +133,10 @@ Before final delivery, the test dashboard export should be replaced by the final
 
 - Streamlit data portal UI has been translated to English.
 - Superset dashboard export is stored under `superset/assets/` and can be imported automatically during Superset initialization.
+
+
+## Portability Status
+
+The platform has been successfully deployed on multiple machines using the documented deployment process.
+
+This validates that the current Docker Compose setup is portable enough for local or server-based handoff.
