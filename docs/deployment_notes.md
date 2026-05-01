@@ -11,6 +11,7 @@
 Copy-Item .env.example .env
 
 # Start services.
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\start_deployment.ps1
 # The custom Airflow image is built explicitly before `docker compose up` to avoid parallel build conflicts when multiple Airflow services use the same local image tag.
 

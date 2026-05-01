@@ -61,6 +61,10 @@ Superset datasets / dashboards
 ```
 
 ## 3. Quick Start
+```
+git clone https://github.com/icecola123/upc_data-platform.git
+cd upc_data-platform
+```
 
 Create the local environment file:
 
@@ -71,7 +75,9 @@ Copy-Item .env.example .env
 Edit .env and replace placeholder passwords if needed.
 
 Start all services:
+On Windows, PowerShell may block local scripts by default. Run the following command in the current PowerShell session before starting the deployment script:
 ```
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\start_deployment.ps1
 ```
 
