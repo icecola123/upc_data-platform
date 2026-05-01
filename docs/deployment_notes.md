@@ -6,12 +6,13 @@
 2. Copy or clone the repository.
 3. Create `.env` from `.env.example`.
 
-```powershell
+```
 # Copy environment file
 Copy-Item .env.example .env
 
 # Start services.
-docker compose up -d --build
+.\scripts\start_deployment.ps1
+# The custom Airflow image is built explicitly before `docker compose up` to avoid parallel build conflicts when multiple Airflow services use the same local image tag.
 
 # Wait for initialization.
 Start-Sleep -Seconds 120

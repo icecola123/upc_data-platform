@@ -72,7 +72,7 @@ Edit .env and replace placeholder passwords if needed.
 
 Start all services:
 ```
-docker compose up -d --build
+.\scripts\start_deployment.ps1
 ```
 
 Check service status:

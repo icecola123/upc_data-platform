@@ -1,5 +1,4 @@
 x-airflow-common: &airflow-common
-  build: ./airflow
   image: data-platform-airflow:2.8.1-local
   environment:
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
