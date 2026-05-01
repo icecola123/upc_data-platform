@@ -1,12 +1,18 @@
 x-airflow-common: &airflow-common
-  image: apache/airflow:2.7.1
+  build: ./airflow
+  image: data-platform-airflow:2.8.1-local
   environment:
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "False"
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@postgres:5432/airflow_db
     AIRFLOW__CORE__LOAD_EXAMPLES: "False"
     AIRFLOW__API__AUTH_BACKENDS: airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session
-
+    
+    AIRFLOW__WEBSERVER__WORKERS: "1"
+    AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: "300"
+    AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: "300"
+    AIRFLOW__WEBSERVER__WORKER_REFRESH_INTERVAL: "3600"
+    
     AIRFLOW_CONN_MINIO_CONN: aws://${MINIO_AIRFLOW_USER}:${MINIO_AIRFLOW_PASSWORD}@/?endpoint_url=http%3A%2F%2Fminio%3A9000&region_name=us-east-1
     AIRFLOW_CONN_PROJECT_POSTGRES: postgresql://project_user:project_pass@postgres:5432/project_db
 
@@ -14,7 +20,6 @@ x-airflow-common: &airflow-common
     PROJECT_DB_PASSWORD: project_pass
     PROJECT_DB_NAME: project_db
 
-    _PIP_ADDITIONAL_REQUIREMENTS: pandas openpyxl boto3 botocore sqlalchemy psycopg2-binary dbt-postgres==1.7.0
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
