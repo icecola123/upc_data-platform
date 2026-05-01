@@ -168,3 +168,35 @@ docker compose exec airflow-scheduler airflow dags list-import-errors
 - Restart the platform and run smoke test:
 
   `.\scripts\reset_project.ps1`
+  
+  
+  
+## Deployment / CD Workflow
+
+For a deployment machine that already has the repository cloned:
+
+```powershell
+git pull
+.\scripts\deploy.ps1
+
+For a safe rebuild without deleting runtime data:
+
+.\scripts\redeploy.ps1
+
+The deployment script will:
+
+Ensure .env exists.
+Pull the latest Git changes.
+Build and start Docker Compose services.
+Run Airflow and Superset validation checks.
+
+Service URLs:
+
+Streamlit: http://localhost:8501
+Airflow:   http://localhost:8080
+Superset:  http://localhost:8088
+MinIO:     http://localhost:9001
+
+For a full reset or clean test, use the dedicated reset script only when runtime data can be safely deleted.
+
+

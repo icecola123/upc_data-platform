@@ -7,66 +7,107 @@
 3. Create `.env` from `.env.example`.
 
 ```powershell
+# Copy environment file
 Copy-Item .env.example .env
 
-Start services.
+# Start services.
 docker compose up -d --build
 
-Wait for initialization.
+# Wait for initialization.
 Start-Sleep -Seconds 120
 
-Run checks.
+# Run checks.
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\scripts\check_airflow.ps1
 .\scripts\check_superset.ps1
 
-Open Streamlit and upload an Excel file.
-http://localhost:8501
+# Open Streamlit and upload an Excel file. (http://localhost:8501)
 
-Run the full smoke test.
+# Run the full smoke test.
 .\scripts\smoke_test.ps1
+```
 
 
+### Service URLs
+- Streamlit: http://localhost:8501
 
-Service URLs
-Streamlit: http://localhost:8501
-Airflow:   http://localhost:8080
-Superset:  http://localhost:8088
-MinIO:     http://localhost:9001
+- Airflow: http://localhost:8080
+
+- Superset: http://localhost:8088
+
+- MinIO: http://localhost:9001
 
 Superset PostgreSQL URI
+text
 postgresql+psycopg2://project_user:project_pass@postgres:5432/project_db
 
-Notes
+
+### Notes
 Do not use localhost inside container-to-container connection strings.
+
 Use postgres as the PostgreSQL hostname from Superset and Airflow containers.
+
 Do not expose PostgreSQL publicly in a real deployment.
+
 For cloud deployment, prefer a VPS with Docker Compose.
 
 
-
-
-
-## Deployment Verification Result
-
+### Deployment Verification Result
 The project has been tested on multiple machines.
 
 Verified scenarios:
 
 - Main development machine
+
 - Another local machine
+
 - A remote machine in a different geographic location
 
 Results:
 
 - Docker Compose deployment succeeded.
-- Airflow initialized successfully.
-- Airflow webserver and scheduler stayed running.
-- Streamlit data portal started correctly.
-- MinIO initialized correctly.
-- PostgreSQL initialized correctly.
-- Superset started successfully.
-- Superset PostgreSQL connection worked.
-- The deployment followed the documented steps in this file.
 
-This confirms that the project can be migrated and redeployed on another machine using the repository files, `.env.example`, and Docker Compose.
+- Airflow initialized successfully.
+
+- Airflow webserver and scheduler stayed running.
+
+- Streamlit data portal started correctly.
+
+- MinIO initialized correctly.
+
+- PostgreSQL initialized correctly.
+
+- Superset started successfully.
+
+- Superset PostgreSQL connection worked.
+
+The deployment followed the documented steps in this file.
+This confirms that the project can be migrated and redeployed on another machine using the repository files, .env.example, and Docker Compose.
+
+
+### Continuous Deployment Approach
+The current project uses a lightweight Docker Compose deployment workflow.
+
+The recommended deployment process is:
+
+```
+git pull
+.\scripts\deploy.ps1
+```
+This approach is used because the platform consists of multiple services:
+
+- PostgreSQL
+
+- MinIO
+
+- Airflow webserver
+
+- Airflow scheduler
+
+- Streamlit data portal
+
+- Superset
+
+The current CD process is intentionally simple and local/server-oriented. It avoids platform-specific deployment assumptions and allows teammates to deploy the same stack on another machine using Docker Compose.
+
+A future improvement would be to run this deployment script from a self-hosted GitHub Actions runner on the deployment machine.

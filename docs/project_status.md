@@ -6,7 +6,6 @@ The project currently provides a working local Docker-based data platform.
 
 The stable data flow is:
 
-```text
 Streamlit Data Portal
 → MinIO
 → Airflow DAG
