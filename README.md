@@ -29,22 +29,36 @@ Superset datasets / dashboards
 ├── airflow/
 │   ├── dags/
 │   │   └── process_new_data_dag.py
-│   ├── logs/
-│   └── plugins/
+│   ├── dbt_poject/
+│   │   └── dbt_project.yml
+│   ├── plugins/
+│   └── Dockerfile
 ├── data_portal/
 │   ├── app.py
 │   ├── Dockerfile
 │   └── requirements.txt
+├── docs/
+│   ├── deployment_notes.md
+│   ├── handoff_checklist.md
+│   └── project_status.md
 ├── init_scripts/
 │   ├── init.sh
 │   └── init_superset.sh
 ├── scripts/
+│   ├── check_airflow.ps1
+│   ├── check_postgres.ps1
 │   ├── check_superset.ps1
+│   ├── deploy.ps1
+│   ├── redeploy.ps1
+│   ├── reset_project.ps1
 │   └── smoke_test.ps1
 ├── superset/
+│   ├── assets/
+│   │   └── upc_dashboard.zip
 │   └── superset_config.py
 ├── docker-compose.yml
 ├── .env.example
+├── .gitattributes
 ├── .gitignore
 └── README.md
 
