@@ -1,0 +1,38 @@
+name: Basic CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check repository structure
+        run: |
+          test -f docker-compose.yml
+          test -f .env.example
+          test -f README.md
+          test -f airflow/dags/process_new_data_dag.py
+          test -f data_portal/app.py
+          test -f data_portal/Dockerfile
+          test -f airflow/Dockerfile
+          test -f init_scripts/init.sh
+          test -f init_scripts/init_superset.sh
+
+      - name: Validate Docker Compose config
+        run: |
+          cp .env.example .env
+          docker compose config
+
+      - name: Check Python syntax
+        run: |
+          python -m py_compile data_portal/app.py
+          python -m py_compile airflow/dags/process_new_data_dag.py

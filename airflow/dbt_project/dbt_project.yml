@@ -1,0 +1,15 @@
+name: "my_upc_transformation"
+version: "1.0.0"
+config-version: 2
+
+profile: "my_upc_transformation"
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+
+models:
+  my_upc_transformation:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
