@@ -2,24 +2,35 @@
 set -e
 
 echo "=== Waiting for Superset metadata database ==="
+
 python - <<'PY'
 import os
 import time
 import psycopg2
 
-uri = os.environ["SQLALCHEMY_DATABASE_URI"]
+host = "postgres"
+port = 5432
+dbname = "superset_db"
+user = os.environ["SUPERSET_DB_USER"]
+password = os.environ["SUPERSET_DB_PASSWORD"]
 
 for attempt in range(60):
-	try:
-		conn - psycopg2.connect(uri)
-		conn.close()
-		print("Superset metadata database is ready.")
-		break
-	except Exception as exc:
-		print(f"Waiting for Superset metadata database... attempt{attempt+1}/60:{exc1}")
-		time.sleep(5)
+    try:
+        conn = psycopg2.connect(
+            host=host,
+            port=port,
+            dbname=dbname,
+            user=user,
+            password=password,
+        )
+        conn.close()
+        print("Superset metadata database is ready.")
+        break
+    except Exception as exc:
+        print(f"Waiting for Superset metadata database... attempt {attempt + 1}/60: {exc}")
+        time.sleep(5)
 else:
-	raise RuntimeError("Superset metadata database was not ready after waiting.")
+    raise RuntimeError("Superset metadata database was not ready after waiting.")
 PY
 	
 echo "=== 1. Upgrade Superset metadata database ==="
