@@ -1,3 +1,22 @@
+WITH latest_source AS (
+    SELECT source_file
+    FROM raw_cases
+    ORDER BY import_date DESC
+    LIMIT 1
+),
+
+latest_cases AS (
+    SELECT *
+    FROM raw_cases
+    WHERE source_file = (SELECT source_file FROM latest_source)
+),
+
+latest_patents AS (
+    SELECT *
+    FROM raw_patents
+    WHERE source_file = (SELECT source_file FROM latest_source)
+)
+
 SELECT
     c.CaseNumber AS case_number,
     c.Patentnumber AS patent_number,
@@ -51,7 +70,7 @@ SELECT
     p.Patent_Value AS patent_value,
     p.Technology_35_classes AS technology_35_classes
 
-FROM raw_cases c
-LEFT JOIN raw_patents p
+FROM latest_cases c
+LEFT JOIN latest_patents p
     ON c.Patentnumber = p.Patentnumber
 ;

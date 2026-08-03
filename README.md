@@ -42,6 +42,13 @@ Superset datasets / dashboards
 |   |-- deployment_notes.md
 |   |-- handoff_checklist.md
 |   `-- project_status.md
+|-- frontend/
+|   |-- src/
+|   |   |-- pages/
+|   |   |   |-- api/
+|   |   |   `-- dashboard.astro
+|   |-- Dockerfile
+|   `-- package.json
 |-- init_scripts/
 |   |-- init.sh
 |   `-- init_superset.sh
@@ -101,6 +108,8 @@ Service	URL
 
 - Superset	http://localhost:8088
 
+- Astro frontend	http://localhost:4321
+
 - PostgreSQL	http://localhost:5432
 
 Credentials are defined in .env.
@@ -155,8 +164,30 @@ Superset analytical datasets are created manually in SQL Lab using the SQL files
 - `superset/sql/ds_cases_geo.sql`
 - `superset/sql/ds_cases_parties.sql`
 
+## 8. Astro Frontend
 
-## 8. Important Notes
+The Astro app lives in `frontend/` and is started by Docker Compose as the `astro-frontend` service.
+
+Open the embedded dashboard at:
+
+```text
+http://localhost:4321/dashboard
+```
+
+The iframe URL is configured with `PUBLIC_SUPERSET_DASHBOARD_URL`. For local Docker use it should point to the host-facing Superset URL:
+
+```text
+http://localhost:8088/superset/dashboard/upc-v0623/?standalone=true
+```
+
+An optional API route is also available at `/api/superset-dashboard`. It uses `SUPERSET_DASHBOARD_URL`, which should point to the container-facing Superset service:
+
+```text
+http://superset:8088/superset/dashboard/upc-v0623/?standalone=true
+```
+
+
+## 9. Important Notes
 
 Do not commit:
 
@@ -218,6 +249,7 @@ Service URLs:
 - Streamlit: http://localhost:8501
 - Airflow:   http://localhost:8080
 - Superset:  http://localhost:8088
+- Astro:     http://localhost:4321
 - MinIO:     http://localhost:9001
 
 For a full reset or clean test, use the dedicated reset script only when runtime data can be safely deleted.

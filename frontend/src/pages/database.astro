@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout title="Database">
+    <section class="info">
+    <h2>Database</h2>
+    <p>
+      This website uses the case information documents provided by the UPC on its website (<a href="https://www.unified-patent-court.org/en/registry/presentation" target="_blank">
+    https://www.unified-patent-court.org/en/registry/presentation </a>)
+        : we have cleaned and consolidated 
+      the names of the parties involved in patent litigation and added extensive information about each case, including details on the parties involved and the patents in dispute.
+    </p>
+    <p>
+      The database contains all infringement actions filed at the Unified Patent Court (UPC) since June 1, 2023. It includes information on case numbers, 
+      the parties involved (with country and economic sector), court divisions, filing dates, decision outcomes (if available), and an NPE identifier for cases by Non-Practicing Entities (NPEs). 
+      We define NPEs as legal organizations that own or benefit from patent rights but neither manufacture products nor provide related services. They actively license out, assert or litigate their patents to generate profits, 
+      excluding sole inventors, universities and research institutes. We further differentiate between non-practicing entities using patents they obtained from others, labeled as “NPE (acquired patents)”,
+      and cases where the NPE is the original assignee of the litigated patent “NPE (filed patents)”.  
+    </p>
+
+    <p>
+      The database also includes information on the patents involved, such as application year, technological classification (WIPO 35 classes), 
+      the information of whether the patent has been declered as standard essential patents (SEP) and an indicator of patent value based on percentile rankings (100: high score; 1: low score)
+       within each application year and WIPO technology class (35 categories). 
+      This measures averages two key dimensions: the number of citations a patent received in the first five years after publication and the size of its patent family.  
+    </p>
+    <p> You can explore the dashboard we created with Superset by clicking the button below.</p>
+    <a href= "/dashboard"class="btn-database">
+      Dashboard
+    </a>
+</Layout>

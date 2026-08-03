@@ -1,0 +1,15 @@
+.git
+.github
+.env
+postgres_data
+minio_data
+airflow/logs
+airflow/plugins/__pycache__
+airflow/dags/__pycache__
+__pycache__
+*.pyc
+*.pyo
+*.xlsx
+frontend/node_modules
+frontend/dist
+frontend/.astro

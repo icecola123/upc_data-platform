@@ -1,5 +1,6 @@
 x-airflow-common: &airflow-common
   image: data-platform-airflow:2.8.1-local
+  build: ./airflow
   environment:
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "False"
@@ -107,6 +108,7 @@ services:
               "Effect": "Allow",
               "Action": [
                 "s3:PutObject",
+                "s3:GetObject",
                 "s3:AbortMultipartUpload",
                 "s3:ListMultipartUploadParts"
               ],
@@ -244,3 +246,21 @@ services:
       - minio-init
       - airflow-webserver
     command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --server.fileWatcherType poll
+
+  astro-frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "4321:4321"
+    environment:
+      PUBLIC_SUPERSET_DASHBOARD_URL: ${PUBLIC_SUPERSET_DASHBOARD_URL:-http://localhost:8088/superset/dashboard/upc-v0623/?standalone=true}
+      SUPERSET_DASHBOARD_URL: ${SUPERSET_DASHBOARD_URL:-http://superset:8088/superset/dashboard/upc-v0623/?standalone=true}
+    depends_on:
+      - superset
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:4321/dashboard >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s

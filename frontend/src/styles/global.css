@@ -1,0 +1,194 @@
+.body{
+  background-color: #ffffff;
+  margin: 0;
+}
+.hero {
+  position: relative;
+  max-width: 1200px;
+  height: 520px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.hero-video{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-1;
+}
+
+.hero-content{
+  text-align:center;
+  color:white;
+  max-width:800px;
+}
+
+.hero h1{
+  font-size:3.5rem;
+  margin-bottom:20px;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:30px;
+}
+
+.btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: #1d1d7c;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover{
+  background:#1d4ed8;
+}
+
+.info{
+  max-width:800px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+.chart-container{
+  display:flex;
+  justify-content:center;
+  margin-top:40px;
+}
+
+.chart-image{
+  max-width:800px;
+  width:100%;
+}
+
+.btn-database{
+  display:flex;
+  justify-content:center;
+  margin-top:40px;
+
+  background: #1d1d7c;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-database:hover{
+  background:#1d4ed8;
+}
+
+.img-container{
+  display:flex;
+  justify-content:center;
+  margin-top:40px;
+  margin-bottom: 40px;
+}
+
+.img-image{
+  max-width:300px;
+  width:100%;
+}
+
+.partners{
+  max-width:1000px;
+  margin:40px auto;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:40px;
+}
+
+.partners img{
+  height:80px;
+  object-fit:contain;
+}
+
+
+.hero-event{
+  position:relative;
+  max-width:1200px;
+  height:260px;
+  margin:50px auto;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.hero-event-bg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  filter:blur(6px) brightness(0.7);
+  transform:scale(1.05);
+}
+
+.hero-event-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+}
+
+.hero-event-content{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  color:white;
+  text-align:center;
+}
+
+.hero-event-content h2{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.hero-event-content p{
+  max-width:500px;
+  margin-bottom:20px;
+}
+
+.btn-event{
+  background:#2d2e83;
+  color:white;
+  padding:10px 25px;
+  border-radius:6px;
+  text-decoration:none;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* h2 non gras et italique */
+h2 {
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* enlever le bleu des liens */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* optionnel : garder un effet au survol */
+a:hover {
+  text-decoration: underline;
+}

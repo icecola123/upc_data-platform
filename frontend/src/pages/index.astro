@@ -1,0 +1,54 @@
+---
+
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import IndexVideo from "../assets/IndexVideo.mp4";
+import IndexImage1 from "../assets/IndexImagePlaceHolder.jpg"
+import cyu from "../assets/cyu.png"
+import cytech from "../assets/cytech.png"
+import bordeaux from "../assets/bordeaux.jpg"
+import indexImage from "../assets/indexImage.jpg"
+import conf from "../assets/conference.jpg"
+---
+
+<!-- La partie du haut correspond à la partie des imports -->
+
+<Layout title=>
+  <section class="hero">
+    <p>
+      <img src={indexImage.src} alt="indexImage" />
+      </video>
+    </p>
+
+    <a href="/dashboard" class="btn">
+      Dashboard
+    </a>
+  </section>
+  <section class ="partners">
+  <img src={cyu.src} alt="CY" />
+  <img src={cytech.src} alt="CY Tech" />
+  <img src={bordeaux.src} alt="Université Bordeaux" />
+
+</section>
+
+</section>
+  <section class="info">
+    <h1>UPC Patent Litigation Data and Insights</h1>
+    <p>
+      This website offers independent insights and unaffiliated with the European Unified Patent Court (UPC).
+      Our goal is to deliver comprehensive data and visual insights on litigation cases at the UPC, with a particular focus on infringement actions filed since its opening on June 1, 2023.
+      The data and figures presented here are updated on a monthly basis, ensuring that users have access to the most current information (Last update: 07/03/2026)
+    </p>
+  </section>
+
+  <section class="chart-container">
+   <img src={IndexImage1.src} alt="IndexImage1" class="chart-image" />   
+  </section>
+
+  <section class="info">
+    The category “NPE (acquired patents)” refers to cases initiated by non-practicing entities using patents they acquired from other entities. 
+    In contrast, “NPE (filed patents)” refers to cases where the NPE is the original assignee of the litigated patent.
+
+  </section>
+</Layout>
+

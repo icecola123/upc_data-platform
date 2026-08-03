@@ -13,3 +13,4 @@ Start-Sleep -Seconds 90
 
 Write-Host ""
 Write-Host "Safe redeploy finished."
+Write-Host "Astro: http://localhost:4321"

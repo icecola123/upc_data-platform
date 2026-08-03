@@ -17,10 +17,10 @@ docker build -t data-platform-airflow:2.8.1-local .\airflow
 
 Write-Host ""
 Write-Host "=============================="
-Write-Host "Build data portal image"
+Write-Host "Build Docker Compose images"
 Write-Host "=============================="
 
-docker compose build data-portal
+docker compose build data-portal astro-frontend
 
 Write-Host ""
 Write-Host "=============================="
@@ -46,3 +46,5 @@ Write-Host "Deployment started."
 Write-Host "Streamlit: http://localhost:8501"
 Write-Host "Airflow:   http://localhost:8080"
 Write-Host "Superset:  http://localhost:8088"
+Write-Host "Astro:     http://localhost:4321"
+Write-Host "MinIO:     http://localhost:9001"

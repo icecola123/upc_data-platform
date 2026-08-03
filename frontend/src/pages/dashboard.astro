@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+
+const dashboardUrl =
+  import.meta.env.PUBLIC_SUPERSET_DASHBOARD_URL ??
+  "http://localhost:8088/superset/dashboard/upc-v0623/?standalone=true";
+---
+
+<Layout>
+  <iframe
+    src={dashboardUrl}
+    title="Superset dashboard"
+    style="width: 100%; height: 100vh; border: none;"
+  >
+  </iframe>
+</Layout>

@@ -1,4 +1,23 @@
-WITH city_geo AS (
+WITH latest_source AS (
+    SELECT source_file
+    FROM raw_cases
+    ORDER BY import_date DESC
+    LIMIT 1
+),
+
+latest_cases AS (
+    SELECT *
+    FROM raw_cases
+    WHERE source_file = (SELECT source_file FROM latest_source)
+),
+
+latest_patents AS (
+    SELECT *
+    FROM raw_patents
+    WHERE source_file = (SELECT source_file FROM latest_source)
+),
+
+city_geo AS (
     SELECT 'Mannheim' AS city, 49.4875 AS latitude, 8.4660 AS longitude
     UNION ALL SELECT 'Munich', 48.1351, 11.5820
     UNION ALL SELECT 'Hamburg', 53.5511, 9.9937
@@ -49,8 +68,8 @@ cases_base AS (
                 ELSE c.Courtdivision
             END
         ) AS city
-    FROM raw_cases c
-    LEFT JOIN raw_patents p
+    FROM latest_cases c
+    LEFT JOIN latest_patents p
         ON c.Patentnumber = p.Patentnumber
 )
 
